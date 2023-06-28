@@ -44,5 +44,5 @@ MovieView.propTypes = {
       Name: PropTypes.string.isRequired
     }),
     Year: PropTypes.string.isRequired,
-    onBackClick: PropTypes.func.isRequired
+    onMovieClick: PropTypes.func.isRequired
 };
