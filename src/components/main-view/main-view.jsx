@@ -18,14 +18,8 @@ export const MainView = () => {
             Title: movie.title,
             ImageURL: movie.imageURL,
             Description: movie.description,
-            Genre: {
-              Name: movie.genre.name,
-              Description: movie.genre.description
-            },
-            Director: {
-              Name: movie.director.name,
-              Bio: movie.director.bio
-            },
+            Genre: movie.genre.name,
+            Director: movie.director.name,
             Year: movie.year
           };
         });
