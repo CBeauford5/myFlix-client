@@ -8,7 +8,7 @@ export const MainView = () => {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   useEffect(() => {
-    fetch('https://my-movie-database-api-b1811320c6f7.herokuapp.com/movies')
+    fetch("https://my-movie-database-api-b1811320c6f7.herokuapp.com/movies")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
