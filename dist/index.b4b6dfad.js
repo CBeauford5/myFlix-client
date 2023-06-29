@@ -27260,7 +27260,7 @@ _c = MovieCard;
 //PropTypes return conditions
 MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
-        Title: (0, _propTypesDefault.default).string.isRequired
+        title: (0, _propTypesDefault.default).string.isRequired
     }).isRequired,
     onMovieClick: (0, _propTypesDefault.default).func.isRequired
 };
@@ -28270,7 +28270,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 15
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.genre.name
+                        children: movie.genre
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 19,
@@ -28292,7 +28292,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         columnNumber: 15
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                        children: movie.director.name
+                        children: movie.director
                     }, void 0, false, {
                         fileName: "src/components/movie-view/movie-view.jsx",
                         lineNumber: 23,
