@@ -15,11 +15,10 @@ export const LoginView = ({ onLoggedIn }) => {
     fetch("https://my-movie-database-api-b1811320c6f7.herokuapp.com/login", {
       method: "POST",
       headers: {
-        "Content-Type": "applications/json"
+        "Content-Type': 'application/json"
       },
       body: JSON.stringify(data)
-    })
-      .then((response) => response.json())
+    }).then((response) => response.json())
       .then((data) => {
         console.log("Login response: ", data);
         if (data.user) {
@@ -37,7 +36,7 @@ export const LoginView = ({ onLoggedIn }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      
+
       <label>
         Username:
         <input
@@ -47,7 +46,7 @@ export const LoginView = ({ onLoggedIn }) => {
           required
         />
       </label>
-      
+
       <label>
         <input
           type="password"
@@ -58,7 +57,7 @@ export const LoginView = ({ onLoggedIn }) => {
       </label>
 
       <button type="submit">Submit</button>
-    
+
     </form>
   );
 };
