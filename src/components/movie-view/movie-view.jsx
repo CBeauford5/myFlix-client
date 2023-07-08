@@ -14,13 +14,13 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     );
 
     useEffect(() => {
-        setAsFavorite(user.favoriteMovies.includes(movie.id));
+        setAsFavorite(user.favoriteMovies.includes(movie._id));
         window.scrollTo(0, 0);
     }, [movieId]);
 
     const addFavorite = () => {
         fetch(
-            `https://my-movie-database-api-b1811320c6f7.herokuapp.com/users/${user._id}/${movieId}`,
+            `https://my-movie-database-api-b1811320c6f7.herokuapp.com/users/${user.username}/movies/${movieId}`,
             {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` },
@@ -47,7 +47,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     };
 
     const removeFavorite = () => {
-        fetch(`https://my-movie-database-api-b1811320c6f7.herokuapp.com/users/${user._id}/movies/${movieId}`, {
+        fetch(`https://my-movie-database-api-b1811320c6f7.herokuapp.com/users/${user.username}/movies/${movieId}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` }
         })
@@ -109,4 +109,5 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
         </div>
     );
 };
+
 
