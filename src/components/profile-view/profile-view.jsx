@@ -5,7 +5,6 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Modal from "react-bootstrap/Modal";
 import { MovieCard } from "../movie-card/movie-card";
-import { ModalHeader } from "react-bootstrap";
 
 export const ProfileView = ({ user, token, setUser, movies }) => {
   const [username, setUsername] = useState(user.username);
@@ -14,7 +13,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
   const [birthday, setBirthday] = useState(user.birthDate);
   const [showModal, setShowModal] = useState(false);
   const favoriteMovies = movies.filter((movie) => {
-    return user.favoriteMovies.includes(movie.id)
+    return user.favoriteMovies.includes(movie._id)
   });
 
   const handleShowModal = () => setShowModal(true);
@@ -65,6 +64,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
 
   return (
     <>
+      
       <h1>Profile</h1>
       <Row>
         <Col>
@@ -74,7 +74,16 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
         </Col>
       </Row>
       <Row>
-        <h3>Update your profile information here:</h3>
+      <Row>
+        <h3>Favorite movies:</h3>
+        {favoriteMovies.map((movie) => (
+          <Col className="mb-5" key={movie._id} md={2}>
+            <MovieCard movie={movie}></MovieCard>
+          </Col>
+        ))}
+      </Row>
+
+        <h2>Update your profile information here:</h2>
         <br />
 
         <Form onSubmit={handleSubmit}>
@@ -124,18 +133,11 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
           </Form.Group>
           <br />
 
-          <Button className="mb-5 mt-4" variant="primary" type="submit">Save changes</Button>
+          <Button className="mb-4 mt-1" variant="primary" type="submit">Save changes</Button>
         </Form>
       </Row>
-      <Row>
-        <h3>Favorite movies:</h3>
-        {favoriteMovies.map((movie) => (
-          <Col className="mb-5" key={movie._id} md={4}>
-            <MovieCard movie={movie}></MovieCard>
-          </Col>
-        ))}
-      </Row>
-      <Button variant="primary" className="mt-3 mb-5" onClick={handleShowModal}>
+      
+      <Button variant="primary" className=" mb-5" onClick={handleShowModal}>
         Delete my account
       </Button>
       <Modal show={showModal} onHide={handleCloseModal}>
