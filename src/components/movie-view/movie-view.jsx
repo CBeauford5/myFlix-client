@@ -15,7 +15,6 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
 
     useEffect(() => {
         setAsFavorite(user.favoriteMovies.includes(movie._id));
-        window.scrollTo(0, 0);
     }, [movieId]);
 
     const addFavorite = () => {
@@ -75,7 +74,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     return (
         <div>
             <div>
-                <img className="w-100" src={movie.imageURL} />
+                <img className="w-50" src={movie.imageURL} />
             </div>
             <br />
             <div>
@@ -99,7 +98,7 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
                 <span>{movie.year}</span>
             </div>
             <Link to={"/"}>
-                <Button className="back-button">Back</Button>
+                <Button className="back-button m-4">Back</Button>
             </Link>
             {isFavoriteMovie ?
                 <Button className="ms-2" onClick={removeFavorite}>Remove from favorites</Button>
