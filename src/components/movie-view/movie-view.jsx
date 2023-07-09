@@ -1,8 +1,77 @@
-import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
-import "./movie-view.scss";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { Button, Col } from "react-bootstrap";
+import { useEffect, useState } from "react";
 
-export const MovieView = ({ movie, onBackClick }) => {
+export const MovieView = ({ movies, user, token, updateUser }) => {
+
+    const { movieId } = useParams();
+
+    const movie = movies.find((m) => m._id === movieId);
+
+    const [isFavoriteMovie, setAsFavorite] = useState(
+        user.favoriteMovies.includes(movie.id)
+    );
+
+    useEffect(() => {
+        setAsFavorite(user.favoriteMovies.includes(movie._id));
+        window.scrollTo(0, 0);
+    }, [movieId]);
+
+    const addFavorite = () => {
+        fetch(
+            `https://my-movie-database-api-b1811320c6f7.herokuapp.com/users/${user.username}/movies/${movieId}`,
+            {
+                method: "POST",
+                headers: { Authorization: `Bearer ${token}` },
+            }
+        )
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert("Failed");
+                    return false;
+                }
+            })
+            .then((user) => {
+                if (user) {
+                    alert("Successfully added to favorites");
+                    setAsFavorite(true);
+                    updateUser(user);
+                }
+            })
+            .catch((e) => {
+                alert(e);
+            });
+    };
+
+    const removeFavorite = () => {
+        fetch(`https://my-movie-database-api-b1811320c6f7.herokuapp.com/users/${user.username}/movies/${movieId}`, {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    alert("Failed");
+                    return false;
+                }
+            })
+            .then(user => {
+                if (user) {
+                    alert(`"${movie.title}" was successfully deleted from favorites`);
+                    setAsFavorite(false);
+                    updateUser(user);
+                }
+            })
+            .catch(e => {
+                alert(e);
+            });
+    }
+
+
     return (
         <div>
             <div>
@@ -29,20 +98,16 @@ export const MovieView = ({ movie, onBackClick }) => {
                 <span><u>Year</u>: </span>
                 <span>{movie.year}</span>
             </div>
-            <Button onClick={onBackClick} className="back-button">Back</Button>
+            <Link to={"/"}>
+                <Button className="back-button">Back</Button>
+            </Link>
+            {isFavoriteMovie ?
+                <Button className="ms-2" onClick={removeFavorite}>Remove from favorites</Button>
+                :
+                <Button className="ms-2" onClick={addFavorite}>Add to favorites</Button>
+            }
         </div>
     );
 };
 
-//PropType conditions
-MovieView.propTypes = {
-    movie: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        imageURL: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        director: PropTypes.string.isRequired,
-        year: PropTypes.string.isRequired,
-    }),
-    onBackClick: PropTypes.func.isRequired
-};
+
