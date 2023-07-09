@@ -27470,14 +27470,8 @@ MovieCard.propTypes = {
     movie: (0, _propTypesDefault.default).shape({
         title: (0, _propTypesDefault.default).string,
         description: (0, _propTypesDefault.default).string,
-        director: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string,
-            bio: (0, _propTypesDefault.default).string
-        }),
-        genre: (0, _propTypesDefault.default).shape({
-            name: (0, _propTypesDefault.default).string,
-            description: (0, _propTypesDefault.default).string
-        })
+        director: (0, _propTypesDefault.default).string,
+        genre: (0, _propTypesDefault.default).string
     }).isRequired
 };
 var _c;
