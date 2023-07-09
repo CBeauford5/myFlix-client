@@ -66,7 +66,6 @@ export const MainView = () => {
           setUser(null);
           setToken(null);
           localStorage.clear();
-          window.location.reload();
         }}
       />
       <Row className="justify-content-md-center">
