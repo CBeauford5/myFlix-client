@@ -19,7 +19,21 @@ export const MainView = () => {
   const updateUser = user => {
     setUser(user);
     localStorage.setItem("user", JSON.stringify(user));
-  } 
+  }
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredMovies, setFilteredMovies] = useState([]);
+
+  const handleSearch = (event) => {
+    const searchQuery = event.target.value.toLowerCase();
+    setSearchTerm(searchQuery);
+
+    const filtered = movies.filter((movie) =>
+      movie.title.toLowerCase().includes(searchQuery)
+    );
+
+    setFilteredMovies(filtered);
+  };
 
   useEffect(() => {
     if (!token) return;
@@ -41,6 +55,7 @@ export const MainView = () => {
           };
         });
         setMovies(moviesFromApi);
+        setFilteredMovies(moviesFromApi);
       });
   }, [token]);
 
@@ -142,37 +157,52 @@ export const MainView = () => {
               <>
                 {!user ? (
                   <Navigate to="/login" replace />
-                ) : movies.length === 0 ? (
-                  <Col>This list is empty!</Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
-                      <Col className="mb-5 mt-3" key={movie.id} md={3}>
-                        <MovieCard movie={movie} />
+                    <Row>
+                      <Col
+                        className="d-flex justify-content-center"
+                        style={{
+                          marginTop: 90,
+                          marginBottom: 20,
+                        }}
+                      >
+                        <input
+                          type="text"
+                          className="form-control form-control-lg"
+                          placeholder="Search Movies"
+                          value={searchTerm}
+                          onChange={handleSearch}
+                        />
                       </Col>
-                    ))}
+                    </Row>
+
+                    <Row>
+                      {filteredMovies.length === 0 ? (
+                        <Col>The list is empty!</Col>
+                      ) : (
+                        filteredMovies.map((movie) => (
+                          <Col
+                            className="mb-4"
+                            key={movie.id}
+                            sm={12}
+                            md={6}
+                            lg={4}
+                          >
+                            <MovieCard
+                              movie={movie}
+                            />
+                          </Col>
+                        ))
+                      )}
+                    </Row>
+
                   </>
                 )}
               </>
             }
           />
         </Routes>
-
-        {user && (
-          <Col md={12}>
-            <button
-              variant="secondary"
-              onClick={() => {
-                setUser(null);
-                setToken(null);
-                localStorage.clear();
-              }}
-            >
-              Logout
-            </button>
-          </Col>
-        )}
-
       </Row>
     </BrowserRouter>
   );
