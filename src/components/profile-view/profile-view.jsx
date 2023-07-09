@@ -52,8 +52,7 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
     fetch(`https://my-movie-database-api-b1811320c6f7.herokuapp.com/users/${user.username}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json"
+        Authorization: `Bearer ${token}`
       }
     }).then((response) => {
       if (response.ok) {
