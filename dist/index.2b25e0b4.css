@@ -1,6 +1,7 @@
 button {
   color: #f5f5f5;
   cursor: pointer;
+  text-align: center;
   background-color: #1e90ff;
   border: none;
   border-radius: 4px;
@@ -82,8 +83,8 @@ button {
   --bs-body-line-height: 1.5;
   --bs-body-color: #212529;
   --bs-body-color-rgb: 33, 37, 41;
-  --bs-body-bg: #fff;
-  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-body-bg: #f8f8ff;
+  --bs-body-bg-rgb: 248, 248, 255;
   --bs-emphasis-color: #000;
   --bs-emphasis-color-rgb: 0, 0, 0;
   --bs-secondary-color: #212529bf;
@@ -2632,11 +2633,11 @@ textarea.form-control-lg {
 }
 
 .form-range:focus::-webkit-slider-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 .25rem #6495ed40;
+  box-shadow: 0 0 0 1px #f8f8ff, 0 0 0 .25rem #6495ed40;
 }
 
 .form-range:focus::-moz-range-thumb {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 .25rem #6495ed40;
+  box-shadow: 0 0 0 1px #f8f8ff, 0 0 0 .25rem #6495ed40;
 }
 
 .form-range::-moz-focus-outer {
