@@ -109,4 +109,3 @@ export const MovieView = ({ movies, user, token, updateUser }) => {
     );
 };
 
-
