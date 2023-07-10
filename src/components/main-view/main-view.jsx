@@ -115,6 +115,7 @@ export const MainView = () => {
                       user={user}
                       token={token}
                       movies={movies}
+                      setUser={setUser}
                       onLoggedOut={() => {
                         setUser(null);
                         setToken(null);
@@ -182,7 +183,7 @@ export const MainView = () => {
                         filteredMovies.map((movie) => (
                           <Col
                             className="mb-4"
-                            key={movie.id}
+                            key={movie._id}
                             sm={12}
                             md={6}
                             lg={4}
