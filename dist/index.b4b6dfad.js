@@ -27289,6 +27289,7 @@ const MainView = ()=>{
                                         user: user,
                                         token: token,
                                         movies: movies,
+                                        setUser: setUser,
                                         onLoggedOut: ()=>{
                                             setUser(null);
                                             setToken(null);
@@ -27323,7 +27324,7 @@ const MainView = ()=>{
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 130,
+                            lineNumber: 131,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -27361,14 +27362,14 @@ const MainView = ()=>{
                                                     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
                                                         movie: movie
                                                     }, void 0, false, void 0, void 0)
-                                                }, movie.id, false, void 0, void 0))
+                                                }, movie._id, false, void 0, void 0))
                                         }, void 0, false, void 0, void 0)
                                     ]
                                 }, void 0, true)
                             }, void 0, false)
                         }, void 0, false, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 152,
+                            lineNumber: 153,
                             columnNumber: 11
                         }, undefined)
                     ]
