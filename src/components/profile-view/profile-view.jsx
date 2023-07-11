@@ -60,6 +60,9 @@ export const ProfileView = ({ user, token, setUser, movies }) => {
       } else {
         alert("something went wrong.")
       }
+    }).then ( ()=> {
+      setShowModal(false);
+      alert("Your account has successfully been deleted")
     })
   }
 
