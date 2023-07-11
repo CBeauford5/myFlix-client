@@ -18,6 +18,7 @@ _Main View_
 -   Returns ALL movies to the user in the form of cards showing a poster image, title, and director
 -   Filtering the list of movies with a “search” feature
 -   Ability to select a movie for more details
+-   Ability to log out
 -   Ability to navigate to a profile view 
 
 _Single Movie View_
